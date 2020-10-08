@@ -1,0 +1,24 @@
+@import '../utils/mixin';
+@import '../utils/variable';
+
+.box-card {
+  @include flexible-column();
+}
+
+.card {
+  @include flexible();
+  flex-wrap: wrap;
+}
+.card-item {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 130px;
+
+  text-align: center;
+
+  cursor: pointer;
+  &:hover {
+    background-color: $color-purple;
+    color: white;
+  }
+}

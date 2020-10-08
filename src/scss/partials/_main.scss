@@ -1,0 +1,7 @@
+@import '../utils/mixin';
+@import '../utils/variable';
+
+.main {
+  @include flexible();
+  background-color: rgb(255, 250, 220);
+}

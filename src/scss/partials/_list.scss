@@ -1,0 +1,25 @@
+@import '../utils/mixin';
+@import '../utils/variable';
+
+$width-list: $width-right-column;
+.box-list {
+  @include flexible-column();
+
+  padding-bottom: auto;
+
+  background-color: rgb(226, 239, 255);
+}
+.list {
+  @include reset();
+  width: $width-list;
+  min-width: 150px;
+}
+.list-item {
+  padding: 5px 0;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-purple;
+  }
+}

@@ -1,0 +1,21 @@
+@import '../utils/mixin';
+
+@import '../utils/variable';
+
+$width-logo: $width-right-column;
+.header {
+  @include flexible();
+}
+.logo {
+  width: $width-logo;
+  min-width: 150px;
+  height: 100%;
+}
+.nav {
+  @include flexible;
+  flex-grow: 1;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav-item {
+}

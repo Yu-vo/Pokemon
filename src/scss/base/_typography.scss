@@ -1,0 +1,10 @@
+:root {
+  --font-family-sans-serif: 'Roboto', sans-serif;
+}
+
+html,
+body {
+  font-family: var(--font-family-sans-serif) !important;
+  color: black;
+  font-weight: 100;
+}
