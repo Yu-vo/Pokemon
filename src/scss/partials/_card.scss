@@ -19,6 +19,8 @@
   cursor: pointer;
   &:hover {
     background-color: $color-purple;
-    color: white;
+    & > a > p {
+      color: white;
+    }
   }
 }

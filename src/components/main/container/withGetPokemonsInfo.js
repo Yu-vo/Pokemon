@@ -4,28 +4,26 @@ import {getPokemons, getInfoPokemons, getByLink} from '@components/APIservice'
 export const withGetPokemonsInfo = WrapperComponent => {
   return () => {
     const [next, setNext] = useState(getPokemons)
-    const [nextP, setNextP] = useState([])
-    const [url, setUrl] = useState({})
+    const [inform, setInform] = useState([])
+    const [offset, setOffset] = useState({})
 
-    const handleClick = () => {
+    const handleLoad = () => {
       next.then(pokemons => {
         setNext(getByLink(pokemons.next))
-        console.log(pokemons.next)
       })
     }
     useEffect(() => {
-      console.log('1')
       next.then(pokemons => {
-        setUrl(pokemons.next.match(/\d+/g)[1])
+        setOffset(pokemons.next.match(/\d+/g)[1])
+        console.log(pokemons)
       })
     }, [next])
-
+    // получение информации о покемонах с url-19 до url
     useMemo(() => {
-      console.log('2')
-      getInfoPokemons(url - 19, url).then(data => {
-        setNextP(d => d.concat(data))
+      getInfoPokemons(offset - 19, offset).then(data => {
+        setInform(d => d.concat(data))
       })
-    }, [url])
-    return <WrapperComponent handleClick={handleClick} data={nextP} />
+    }, [offset])
+    return <WrapperComponent handleLoad={handleLoad} data={inform} />
   }
 }

@@ -1,28 +1,38 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
+import {Link, Route} from 'react-router-dom'
 import {Loader} from '@components/loader'
-
-export const Card = ({data, handleClick}) => {
-  useEffect(() => {
-    console.log(data)
-  }, [data])
-  let card = null
-  if (data)
-    card = data.map(item => {
-      return (
-        <li className="card-item" key={item.name}>
+import {WindowInfo} from '@components/window-info'
+export const Card = ({data, handleLoad}) => {
+  console.log(data)
+  let card = null,
+    route = null
+  if (data) {
+    card = data.map(item => (
+      <li key={item.name + 'card'} className="card-item">
+        <Link to={`/window-info?id=${item.id}`}>
           <img src={item.sprites.front_default} alt=""></img>
           <p>{item.name}</p>
-        </li>
-      )
-    })
-  return data ? (
+        </Link>
+      </li>
+    ))
+    route = data.map((item, index) => (
+      <Route
+        key={item.name + 'routelist'}
+        path={`/window-info?id=${item.id}`}
+        component={WindowInfo}
+        exact
+      />
+    ))
+  }
+  return data.length ? (
     <div className="box-card">
       <ul className="card">{card}</ul>
+      {route}
       <input
         className="button-next"
         type="button"
-        onClick={handleClick}
-        value="ᐯ"
+        onClick={handleLoad}
+        value="..."
       />
     </div>
   ) : (

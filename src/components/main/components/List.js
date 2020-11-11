@@ -3,35 +3,36 @@ import {Loader} from '@components/loader'
 import {Link, Route, Switch} from 'react-router-dom'
 import {WindowInfo} from '@components/window-info'
 
-export const List = ({data, handleClick}) => {
+export const List = ({data, handleLoad}) => {
+  console.log(data)
   let list = null,
     route = null
-  if (data)
-    list = data.map((item, index) => (
+  if (data) {
+    list = data.map(item => (
       <li key={item.name + 'list'} className="list-item">
-        <Link to={`/window-info/${index}`}>{item.name}</Link>
+        <Link to={`/window-info?id=${item.url.match(/\d+/g)[1]}`}>
+          {item.name}
+        </Link>
       </li>
     ))
-
-  if (data)
-    route = data.map((item, index) => (
+    route = data.map(item => (
       <Route
         key={item.name + 'routelist'}
-        path={`/window-info/${item.index}`}
+        path={`/window-info?id=${item.url.match(/\d+/g)[1]}`}
         render={props => <WindowInfo {...props} url={item.url} />}
         exact
       />
     ))
-
-  return data ? (
+  }
+  return data.length ? (
     <div className="box-list">
       <ul className="list">{list}</ul>
       {route}
       <input
         className="button-next"
         type="button"
-        onClick={handleClick}
-        value="ᐯ"
+        onClick={handleLoad}
+        value="..."
       />
     </div>
   ) : (

@@ -3,23 +3,20 @@ import {getPokemons, getByLink} from '../../APIservice'
 
 export const withGetPokemons = WrapperComponent => {
   return () => {
-    const [data, setData] = useState([])
     const [next, setNext] = useState(getPokemons)
+    const [inform, setInform] = useState([])
 
-    const handleClick = () => {
+    const handleLoad = () => {
       next.then(pokemons => {
         setNext(getByLink(pokemons.next))
-        console.log(pokemons.next)
       })
     }
-
     useEffect(() => {
-      console.log('effect')
       next.then(pokemons => {
-        setData(data => data.concat(pokemons.results))
+        setInform(data => data.concat(pokemons.results))
       })
     }, [next])
 
-    return <WrapperComponent data={data} handleClick={handleClick} />
+    return <WrapperComponent data={inform} handleLoad={handleLoad} />
   }
 }

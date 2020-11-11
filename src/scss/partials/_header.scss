@@ -16,6 +16,5 @@ $width-logo: $width-right-column;
   flex-grow: 1;
   justify-content: space-around;
   align-items: center;
-}
-.nav-item {
+  flex-wrap: wrap;
 }

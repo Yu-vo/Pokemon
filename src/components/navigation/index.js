@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react'
-import {Route, Link, Switch} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import logo from '@assets/Pokemon_logo.svg.png'
 
-export const Header = () => {
+export const Navigation = () => {
   const navLink = [
     {id: 1, title: 'Pokemons', path: '/pokemon'},
     {id: 2, title: 'Pokedex', path: '/pokedex'},
